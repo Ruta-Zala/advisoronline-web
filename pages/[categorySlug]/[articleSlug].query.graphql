@@ -1,0 +1,94 @@
+#import "../graphql/fragments/most-read-articles.fragment.graphql"
+
+query Article($articleSlug: String!, $categorySlug: String) {
+	contents(
+		sort: "publishedAt:desc"
+		filters: {
+			and: [
+				{ slug: { eq: $articleSlug } }
+				{ category: { slug: { eq: $categorySlug } } }
+			]
+		}
+	) {
+		data {
+			id
+			attributes {
+				title
+				slug
+				short_description
+				description
+				custom_author
+				cover {
+					data {
+						id
+						attributes {
+							url
+						}
+					}
+				}
+				description
+				createdAt
+				updatedAt
+				publishedAt
+				category {
+					data {
+						id
+						attributes {
+							name
+							slug
+						}
+					}
+				}
+				tags(sort: "updatedAt:desc") {
+					data {
+						id
+						attributes {
+							name
+						}
+					}
+				}
+			}
+		}
+	}
+
+	recentNews: contents(pagination: { limit: 4 }, sort: "publishedAt:desc") {
+		data {
+			id
+			attributes {
+				title
+				slug
+				custom_author
+				short_description
+				category {
+					data {
+						id
+						attributes {
+							name
+							slug
+						}
+					}
+				}
+				cover {
+					data {
+						id
+						attributes {
+							url
+						}
+					}
+				}
+			}
+		}
+	}
+
+	categories(pagination: { pageSize: 8 }) {
+		data {
+			id
+			attributes {
+				name
+				slug
+			}
+		}
+	}
+
+	...MostReadArticles
+}

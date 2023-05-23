@@ -1,0 +1,14 @@
+#import "./shared-one-column-article.fragment.graphql"
+
+fragment SharedTwoColumnsArticles on ComponentSharedTwoColumnsArticles {
+	id
+	active
+
+	First {
+		...SharedOneColumnArticle
+	}
+
+	Second {
+		...SharedOneColumnArticle
+	}
+}

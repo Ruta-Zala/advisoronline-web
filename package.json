@@ -1,0 +1,107 @@
+{
+	"name": "advisoronline-web",
+	"private": true,
+	"version": "0.0.19",
+	"engines": {
+		"node": "^16.0.0",
+		"npm": "^8.0.0"
+	},
+	"scripts": {
+		"build": "npm run codegen && nuxt build",
+		"dev": "concurrently \"npm run codegen -- --watch\" \"nuxt dev\"",
+		"generate": "npm run codegen && nuxt generate",
+		"preview": "nuxt preview",
+		"postinstall": "nuxt prepare",
+		"prepare": "husky install",
+		"storybook": "storybook dev -p 6006",
+		"build-storybook": "storybook build",
+		"sb": "storybook dev -p 6006",
+		"chromatic": "chromatic --exit-zero-on-changes",
+		"release": "standard-version",
+		"codegen": "graphql-codegen --config codegen.ts"
+	},
+	"devDependencies": {
+		"@commitlint/cli": "^17.6.1",
+		"@commitlint/config-conventional": "^17.6.1",
+		"@faker-js/faker": "^7.6.0",
+		"@graphql-codegen/cli": "^3.3.0",
+		"@graphql-codegen/near-operation-file-preset": "^2.5.0",
+		"@graphql-codegen/typed-document-node": "^4.0.0",
+		"@graphql-codegen/typescript": "^3.0.3",
+		"@graphql-codegen/typescript-operations": "^3.0.3",
+		"@headlessui/vue": "^1.7.13",
+		"@intlify/unplugin-vue-i18n": "^0.10.0",
+		"@jagaad/prettier-config": "^1.1.1",
+		"@nuxt/eslint-config": "^0.1.1",
+		"@nuxtjs/apollo": "^5.0.0-alpha.5",
+		"@nuxtjs/google-fonts": "^3.0.0",
+		"@nuxtjs/i18n": "8.0.0-beta.10",
+		"@storybook/addon-essentials": "^7.0.6",
+		"@storybook/addons": "^7.0.6",
+		"@storybook/blocks": "^7.0.6",
+		"@storybook/theming": "^7.0.6",
+		"@storybook/vue3": "^7.0.6",
+		"@storybook/vue3-vite": "^7.0.6",
+		"@tailwindcss/forms": "^0.5.3",
+		"@tailwindcss/typography": "^0.5.9",
+		"@total-typescript/ts-reset": "^0.4.2",
+		"@types/react": "file:packages/types__react",
+		"@vee-validate/rules": "^4.8.6",
+		"@vitejs/plugin-vue": "^4.1.0",
+		"@vue/apollo-composable": "^4.0.0-beta.4",
+		"@vueuse/core": "^10.0.2",
+		"@vueuse/nuxt": "^10.0.2",
+		"autoprefixer": "^10.4.14",
+		"chromatic": "^6.17.3",
+		"concurrently": "^8.0.1",
+		"dotenv": "^16.0.3",
+		"eslint": "^8.38.0",
+		"eslint-config-prettier": "^8.8.0",
+		"eslint-plugin-storybook": "^0.6.11",
+		"graphql": "^16.6.0",
+		"husky": "^8.0.3",
+		"isomorphic-dompurify": "^1.3.0",
+		"lint-staged": "^13.2.1",
+		"node-jq": "^2.3.5",
+		"nuxt": "^3.4.1",
+		"plyr": "^3.7.8",
+		"postcss": "^8.4.23",
+		"postcss-import": "^15.1.0",
+		"prettier": "^2.8.7",
+		"prettier-plugin-tailwindcss": "^0.2.7",
+		"standard-version": "^9.5.0",
+		"storybook": "^7.0.6",
+		"swiper": "^9.2.3",
+		"tailwind-bootstrap-grid": "5.0.1",
+		"tailwindcss": "^3.3.1",
+		"typescript": "^4.9.5",
+		"vee-validate": "^4.8.6",
+		"vite": "^4.3.0",
+		"vite-tsconfig-paths": "^4.2.0",
+		"vue-i18n": "^9.3.0-beta.17",
+		"vue-socials": "^2.0.3",
+		"vue-tsc": "^1.2.0",
+		"zod": "^3.21.4"
+	},
+	"commitlint": {
+		"extends": [
+			"@commitlint/config-conventional"
+		],
+		"rules": {
+			"subject-case": [
+				2,
+				"never",
+				[
+					"start-case",
+					"pascal-case",
+					"upper-case"
+				]
+			]
+		}
+	},
+	"lint-staged": {
+		"*": "prettier --write --ignore-path .gitignore --ignore-unknown",
+		"*.{js,ts,tsx,jsx,vue}": "eslint --fix",
+		"./i18n/locales/*.json": "node scripts/sort-l10n.mjs"
+	}
+}

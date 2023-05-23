@@ -1,0 +1,41 @@
+query EpisodeCollection($collectionSlug: String!) {
+	playCollections(filters: { slug: { eq: $collectionSlug } }) {
+		data {
+			id
+			attributes {
+				name
+				slug
+				video
+				description
+				header {
+					data {
+						id
+						attributes {
+							url
+						}
+					}
+				}
+				seasons {
+					id
+					name
+					episodes {
+						id
+						name
+						releaseDate
+						duration
+						video
+						description
+						thumbnail {
+							data {
+								id
+								attributes {
+									url
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

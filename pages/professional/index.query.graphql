@@ -1,0 +1,64 @@
+#import "../graphql/shared/shared-hero-home-page.fragment.graphql"
+#import "../graphql/shared-one-column-article.fragment.graphql"
+#import "../graphql/shared/shared-partners-in-focus.fragment.graphql"
+#import "../graphql/fragments/most-read-articles.fragment.graphql"
+
+query Professional {
+	siteManagerProfessionalHomePages(
+		publicationState: LIVE
+		pagination: { limit: 1 }
+	) {
+		data {
+			attributes {
+				title
+
+				hero {
+					...SharedHeroHomePage
+				}
+
+				managersView {
+					...SharedOneColumnArticle
+				}
+
+				featuredFunds {
+					...SharedOneColumnArticle
+				}
+
+				partnersInFocus {
+					...SharedPartnersInFocus
+				}
+
+				magazineBox {
+					id
+					active
+					title
+					subtitle
+					cta_detail
+					cta_demo
+					image {
+						data {
+							id
+							attributes {
+								url
+							}
+						}
+					}
+				}
+
+				mostRead
+			}
+		}
+	}
+
+	categories(pagination: { pageSize: 8 }) {
+		data {
+			id
+			attributes {
+				name
+				slug
+			}
+		}
+	}
+
+	...MostReadArticles
+}

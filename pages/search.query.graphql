@@ -1,0 +1,58 @@
+#import "./graphql/fragments/most-read-articles.fragment.graphql"
+
+query Search($page: Int!, $search: String, $sortBy: String!) {
+	contents(
+		filters: {
+			or: [
+				{ title: { containsi: $search } }
+				{ short_description: { containsi: $search } }
+			]
+		}
+		pagination: { pageSize: 12, page: $page }
+		sort: [$sortBy]
+	) {
+		meta {
+			pagination {
+				pageCount
+				total
+			}
+		}
+		data {
+			id
+			attributes {
+				title
+				slug
+				short_description
+				category {
+					data {
+						id
+						attributes {
+							name
+							slug
+						}
+					}
+				}
+				cover {
+					data {
+						id
+						attributes {
+							url
+						}
+					}
+				}
+			}
+		}
+	}
+
+	categories(pagination: { pageSize: 8 }) {
+		data {
+			id
+			attributes {
+				name
+				slug
+			}
+		}
+	}
+
+	...MostReadArticles
+}

@@ -1,0 +1,46 @@
+query aboutUs {
+	siteManagerAboutUs {
+		data {
+			id
+			attributes {
+				slug
+				title
+				subtitle
+				subheading
+				bodyTitle
+				body
+				peopleTitle
+				people {
+					id
+					image {
+						data {
+							id
+							attributes {
+								url
+							}
+						}
+					}
+					fullName
+					role
+					description
+				}
+				contactsTitle
+				contacts {
+					id
+					title
+					email
+					icon
+				}
+				cover {
+					data {
+						id
+						attributes {
+							url
+							alternativeText
+						}
+					}
+				}
+			}
+		}
+	}
+}

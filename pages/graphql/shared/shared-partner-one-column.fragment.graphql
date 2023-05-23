@@ -1,0 +1,56 @@
+fragment SharedPartnerOneColumn on ComponentSharedPartnerOneColumn {
+	id
+	title
+	number_of_items_to_show
+
+	partner {
+		data {
+			id
+			attributes {
+				slug
+				logo {
+					data {
+						id
+						attributes {
+							url
+						}
+					}
+				}
+			}
+		}
+	}
+
+	content_list {
+		data {
+			id
+			attributes {
+				contents(pagination: { limit: 9 }, sort: "publishedAt:desc") {
+					data {
+						id
+						attributes {
+							title
+							slug
+							category {
+								data {
+									id
+									attributes {
+										name
+										slug
+									}
+								}
+							}
+							cover {
+								data {
+									id
+									attributes {
+										url
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,95 @@
+#import "../../graphql/shared/shared-articles-with-featured.fragment.graphql"
+
+query PartnersDetails($partnerSlug: String!) {
+	siteManagerPartners(
+		filters: { slug: { eq: $partnerSlug } }
+		pagination: { limit: 1 }
+	) {
+		data {
+			id
+			attributes {
+				title
+				excerpt
+				description
+				professionalEnabled
+
+				logo {
+					data {
+						id
+						attributes {
+							url
+							alternativeText
+						}
+					}
+				}
+
+				featuredImage {
+					data {
+						id
+						attributes {
+							url
+							alternativeText
+						}
+					}
+				}
+
+				customAdSpace {
+					data {
+						id
+						attributes {
+							url
+							alternativeText
+						}
+					}
+				}
+
+				contactsInformation {
+					id
+					title
+					address
+					phoneNumber
+					email
+					website
+					linkedinUrl
+				}
+
+				keyPeople {
+					id
+					firstName
+					lastName
+					role
+					phoneNumber
+					email
+					profileImage {
+						data {
+							id
+							attributes {
+								url
+								alternativeText
+							}
+						}
+					}
+				}
+
+				featuredBox {
+					...SharedArticlesWithFeatured
+				}
+
+				cornerManagement {
+					insights {
+						active
+						tab_title
+						number_of_items_to_show
+						content_list {
+							data {
+								attributes {
+									name
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,77 @@
+fragment SharedOneColumnArticle on ComponentSharedOneColumnArticle {
+	id
+	title
+	feature_article {
+		data {
+			id
+			attributes {
+				contents(
+					filters: { featured: { eq: true } }
+					sort: "publishedAt:desc"
+				) {
+					data {
+						id
+						attributes {
+							title
+							slug
+							publishedAt
+							short_description
+							category {
+								data {
+									id
+									attributes {
+										name
+										slug
+									}
+								}
+							}
+							cover {
+								data {
+									id
+									attributes {
+										url
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	content_list {
+		data {
+			id
+			attributes {
+				contents(pagination: { limit: 3 }, sort: "publishedAt:desc") {
+					data {
+						id
+						attributes {
+							title
+							slug
+							publishedAt
+							short_description
+							category {
+								data {
+									id
+									attributes {
+										name
+										slug
+									}
+								}
+							}
+							cover {
+								data {
+									id
+									attributes {
+										url
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

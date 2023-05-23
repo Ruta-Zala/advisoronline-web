@@ -1,0 +1,80 @@
+fragment SharedArticlesWithFeatured on ComponentSharedArticlesWithFeatured {
+	id
+	title
+	active
+	featured_tag {
+		data {
+			id
+			attributes {
+				contents(
+					pagination: { limit: 1 }
+					filters: { featured: { eq: true } }
+					sort: "publishedAt:desc"
+				) {
+					data {
+						id
+						attributes {
+							title
+							publishedAt
+							short_description
+							slug
+							cover {
+								data {
+									id
+									attributes {
+										alternativeText
+										url
+									}
+								}
+							}
+							category {
+								data {
+									id
+									attributes {
+										name
+										slug
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	articles_tag {
+		data {
+			attributes {
+				contents(pagination: { limit: 9 }, sort: "publishedAt:desc") {
+					data {
+						id
+						attributes {
+							title
+							publishedAt
+							slug
+							short_description
+							category {
+								data {
+									id
+									attributes {
+										slug
+										name
+									}
+								}
+							}
+							cover {
+								data {
+									id
+									attributes {
+										alternativeText
+										url
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,65 @@
+#import "../graphql/fragments/most-read-articles.fragment.graphql"
+
+query CategoryArticles($categorySlug: String, $page: Int!) {
+	currentCategory: categories(
+		filters: { slug: { eq: $categorySlug } }
+		pagination: { limit: 1 }
+	) {
+		data {
+			id
+			attributes {
+				slug
+				name
+			}
+		}
+	}
+
+	contents(
+		filters: { category: { slug: { eq: $categorySlug } } }
+		pagination: { pageSize: 12, page: $page }
+		sort: "publishedAt:desc"
+	) {
+		meta {
+			pagination {
+				pageCount
+			}
+		}
+		data {
+			id
+			attributes {
+				title
+				slug
+				short_description
+				category {
+					data {
+						id
+						attributes {
+							name
+							slug
+						}
+					}
+				}
+				cover {
+					data {
+						id
+						attributes {
+							url
+						}
+					}
+				}
+			}
+		}
+	}
+
+	categories(pagination: { pageSize: 8 }) {
+		data {
+			id
+			attributes {
+				name
+				slug
+			}
+		}
+	}
+
+	...MostReadArticles
+}

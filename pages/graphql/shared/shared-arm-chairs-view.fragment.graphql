@@ -1,0 +1,41 @@
+fragment SharedArmChairsView on ComponentSharedArmChairsView {
+	id
+	active
+	title
+
+	content_list {
+		data {
+			id
+			attributes {
+				contents(pagination: { limit: 9 }, sort: "publishedAt:desc") {
+					data {
+						id
+						attributes {
+							title
+							slug
+							short_description
+							publishedAt
+							category {
+								data {
+									id
+									attributes {
+										name
+										slug
+									}
+								}
+							}
+							cover {
+								data {
+									id
+									attributes {
+										url
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

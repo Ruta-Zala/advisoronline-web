@@ -1,0 +1,21 @@
+fragment MostReadArticles on Query {
+	mostRead: contents(pagination: { limit: 3 }, sort: "publishedAt:desc") {
+		data {
+			id
+			attributes {
+				title
+				slug
+				custom_author
+				category {
+					data {
+						id
+						attributes {
+							name
+							slug
+						}
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,21 @@
+fragment SharedPartnersInFocus on ComponentSharedPartnerInFocus {
+	id
+	active
+	title
+	partners {
+		data {
+			id
+			attributes {
+				slug
+				logo {
+					data {
+						id
+						attributes {
+							url
+						}
+					}
+				}
+			}
+		}
+	}
+}

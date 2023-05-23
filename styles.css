@@ -1,0 +1,6 @@
+/* TODO: Think a way to import it only when swiper is used */
+@import 'swiper/css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

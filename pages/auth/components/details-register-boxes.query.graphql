@@ -1,0 +1,23 @@
+query RegisterFields {
+	assetsSizes
+	banks(filters: { hidden: { ne: true } }) {
+		data {
+			id
+			attributes {
+				name
+			}
+		}
+	}
+	managerTypes
+	companyNetworks(filters: { hidden: { ne: true } }) {
+		data {
+			id
+			attributes {
+				name
+			}
+		}
+	}
+	positions
+	promoterSinceMap
+	provinces
+}

@@ -1,0 +1,22 @@
+query faqs {
+	siteManagerFaq {
+		data {
+			id
+			attributes {
+				title
+				contactEmail
+				updatedAt
+				sections {
+					id
+					title
+					items {
+						id
+						title
+						text
+						active
+					}
+				}
+			}
+		}
+	}
+}

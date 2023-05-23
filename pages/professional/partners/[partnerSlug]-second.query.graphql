@@ -1,0 +1,39 @@
+query InsightContent($page: Int!, $tag: String!, $pageSize: Int!) {
+	contents(
+		pagination: { pageSize: $pageSize, page: $page }
+		filters: { tags: { name: { eq: $tag } } }
+		sort: "publishedAt:desc"
+	) {
+		meta {
+			pagination {
+				pageCount
+			}
+		}
+		data {
+			id
+			attributes {
+				title
+				slug
+				short_description
+				publishedAt
+				category {
+					data {
+						id
+						attributes {
+							name
+							slug
+						}
+					}
+				}
+				cover {
+					data {
+						id
+						attributes {
+							url
+						}
+					}
+				}
+			}
+		}
+	}
+}

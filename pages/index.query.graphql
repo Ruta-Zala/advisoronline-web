@@ -1,0 +1,120 @@
+#import "./graphql/shared/shared-hero-home-page.fragment.graphql"
+#import "./graphql/shared/shared-two-columns-articles.fragment.graphql"
+#import "./graphql/shared/shared-carousel-articles-with-feature-article.fragment.graphql"
+#import "./graphql/shared/shared-partner-two-columns-container.fragment.graphql"
+#import "./graphql/shared/shared-arm-chairs-view.fragment.graphql"
+#import "./graphql/shared/shared-partners-in-focus.fragment.graphql"
+#import "./graphql/fragments/most-read-articles.fragment.graphql"
+
+query Home {
+	siteManagerHomePages(publicationState: LIVE, pagination: { limit: 1 }) {
+		data {
+			id
+			attributes {
+				title
+
+				hero {
+					...SharedHeroHomePage
+				}
+
+				columnList {
+					...SharedTwoColumnsArticles
+				}
+
+				carouselArticles {
+					...SharedCarouselArticlesWithFeatureArticle
+				}
+
+				partnerSection {
+					...SharedPartnerTwoColumnsContainer
+				}
+
+				becomeAnAdvisorCta {
+					id
+					active
+					cta
+				}
+
+				armchairsView {
+					...SharedArmChairsView
+				}
+
+				partnersInFocus {
+					...SharedPartnersInFocus
+				}
+
+				magazineBox {
+					id
+					active
+					title
+					subtitle
+					cta_detail
+					cta_demo
+					image {
+						data {
+							id
+							attributes {
+								url
+							}
+						}
+					}
+				}
+
+				categorySelection {
+					id
+					active
+					title
+					categories(pagination: { limit: 8 }) {
+						data {
+							id
+							attributes {
+								name
+								slug
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	recentNews: contents(pagination: { limit: 4 }, sort: "publishedAt:desc") {
+		data {
+			id
+			attributes {
+				title
+				slug
+				short_description
+				category {
+					data {
+						id
+						attributes {
+							name
+							slug
+						}
+					}
+				}
+				cover {
+					data {
+						id
+						attributes {
+							url
+						}
+					}
+				}
+			}
+		}
+	}
+
+	categories(pagination: { pageSize: 8 }) {
+		data {
+			id
+			attributes {
+				name
+				slug
+			}
+		}
+	}
+
+	...MostReadArticles
+}

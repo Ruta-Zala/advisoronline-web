@@ -1,0 +1,80 @@
+#import "../../graphql/shared/shared-hero-home-page.fragment.graphql"
+#import "../../graphql/shared/shared-partners-in-focus.fragment.graphql"
+#import "../../graphql/shared/shared-carousel-articles.fragment.graphql"
+#import "../../graphql/shared/shared-partner-one-column.fragment.graphql"
+#import "../../graphql/fragments/most-read-articles.fragment.graphql"
+
+query ESGHome {
+	siteManagerEsgs(publicationState: LIVE, pagination: { limit: 1 }) {
+		data {
+			id
+			attributes {
+				title
+
+				hero {
+					...SharedHeroHomePage
+				}
+
+				partnersInFocus {
+					...SharedPartnersInFocus
+				}
+
+				products {
+					...SharedCarouselArticles
+				}
+
+				focus {
+					...SharedPartnerOneColumn
+				}
+
+				magazine {
+					id
+					active
+					title
+					subtitle
+					cta_detail
+					cta_demo
+					image {
+						data {
+							id
+							attributes {
+								url
+							}
+						}
+					}
+				}
+
+				categoryBox {
+					id
+					active
+					title
+					categories(pagination: { limit: 8 }) {
+						data {
+							id
+							attributes {
+								name
+								slug
+							}
+						}
+					}
+				}
+
+				strategiesNews {
+					...SharedCarouselArticles
+				}
+			}
+		}
+	}
+
+	categories(pagination: { pageSize: 8 }) {
+		data {
+			id
+			attributes {
+				name
+				slug
+			}
+		}
+	}
+
+	...MostReadArticles
+}

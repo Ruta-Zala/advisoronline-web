@@ -1,0 +1,47 @@
+query Layout {
+	headerMenu: renderNavigation(
+		navigationIdOrSlug: "main-navigation"
+		type: TREE
+		menuOnly: false
+	) {
+		id
+		title
+		path
+		type
+		uiRouterKey
+		menuAttached
+		order
+		items {
+			id
+			title
+			path
+			type
+			uiRouterKey
+			menuAttached
+			order
+		}
+	}
+
+	footerMenu: renderNavigation(
+		navigationIdOrSlug: "footer"
+		type: TREE
+		menuOnly: false
+	) {
+		id
+		title
+		path
+		type
+		uiRouterKey
+		menuAttached
+		order
+		items {
+			id
+			title
+			path
+			type
+			uiRouterKey
+			menuAttached
+			order
+		}
+	}
+}

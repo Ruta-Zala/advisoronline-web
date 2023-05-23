@@ -1,0 +1,14 @@
+query Subscriptions {
+	subscriptionSubscriptions {
+		data {
+			id
+			attributes {
+				customId
+				name
+				price
+				description
+				durationMonths
+			}
+		}
+	}
+}

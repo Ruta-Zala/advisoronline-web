@@ -1,0 +1,14 @@
+{
+  "//1": "This file configuration is for WebStorm GraphQL",
+  "//2": "https://apollo.vuejs.org/guide/installation.html#webstorm",
+  "name": "Advisor GraphQL Schema",
+  "schemaPath": "schema.graphql",
+  "includes": ["./pages/**/*.graphql"],
+  "extensions": {
+    "endpoints": {
+      "Default GraphQL Endpoint": {
+        "url": "${env:NUXT_STRAPI_ORIGIN}/graphql"
+      }
+    }
+  }
+}

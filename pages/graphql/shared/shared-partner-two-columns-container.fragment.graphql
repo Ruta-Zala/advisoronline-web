@@ -1,0 +1,14 @@
+#import "./shared-partner-one-column.fragment.graphql"
+
+fragment SharedPartnerTwoColumnsContainer on ComponentSharedPartnerTwoColumnsContainer {
+	id
+	active
+
+	partner_first {
+		...SharedPartnerOneColumn
+	}
+
+	partner_second {
+		...SharedPartnerOneColumn
+	}
+}

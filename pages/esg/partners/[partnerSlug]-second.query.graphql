@@ -1,0 +1,39 @@
+query SpecificPartnerContent($page: Int!, $tags: [String!]!) {
+	contents(
+		pagination: { pageSize: 12, page: $page }
+		filters: { tags: { name: { in: $tags } } }
+		sort: "publishedAt:desc"
+	) {
+		meta {
+			pagination {
+				pageCount
+			}
+		}
+		data {
+			id
+			attributes {
+				title
+				slug
+				publishedAt
+				short_description
+				category {
+					data {
+						id
+						attributes {
+							name
+							slug
+						}
+					}
+				}
+				cover {
+					data {
+						id
+						attributes {
+							url
+						}
+					}
+				}
+			}
+		}
+	}
+}

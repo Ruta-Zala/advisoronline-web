@@ -1,0 +1,95 @@
+#import "../graphql/shared/shared-hero-home-page.fragment.graphql"
+#import "../graphql/shared/shared-carousel-articles-with-feature-article.fragment.graphql"
+#import "../graphql/shared/shared-carousel-articles.fragment.graphql"
+#import "../graphql/shared/shared-two-columns-articles.fragment.graphql"
+#import "../graphql/shared/shared-partner-two-columns-container.fragment.graphql"
+#import "../graphql/fragments/most-read-articles.fragment.graphql"
+
+query News {
+	siteManagerNewsHomePages(pagination: { limit: 1 }, publicationState: LIVE) {
+		data {
+			id
+			attributes {
+				title
+				subtitle
+				slug
+
+				flashNews {
+					title
+					numberOfItems
+					active
+					contentList {
+						data {
+							id
+							attributes {
+								contents(sort: "publishedAt:desc") {
+									data {
+										id
+										attributes {
+											title
+											cover {
+												data {
+													id
+													attributes {
+														url
+													}
+												}
+											}
+											category {
+												data {
+													id
+													attributes {
+														slug
+														name
+													}
+												}
+											}
+											slug
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+
+				hero {
+					...SharedHeroHomePage
+				}
+
+				columnList {
+					...SharedTwoColumnsArticles
+				}
+
+				newsSlider {
+					...SharedCarouselArticles
+				}
+
+				carouselArticles {
+					...SharedCarouselArticlesWithFeatureArticle
+				}
+
+				partnerSection {
+					...SharedPartnerTwoColumnsContainer
+				}
+
+				categorySelection {
+					id
+					active
+					title
+					categories(pagination: { limit: 8 }) {
+						data {
+							id
+							attributes {
+								name
+								slug
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	...MostReadArticles
+}

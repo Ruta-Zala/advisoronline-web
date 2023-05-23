@@ -1,0 +1,85 @@
+fragment SharedCarouselArticlesWithFeatureArticle on ComponentSharedCarouselArticlesWithFeatureArticle {
+	id
+	title
+	active
+	number_of_items_to_show
+	logo {
+		data {
+			id
+			attributes {
+				url
+			}
+		}
+	}
+	featured_content_article {
+		data {
+			id
+			attributes {
+				contents(
+					pagination: { limit: 1 }
+					filters: { featured: { eq: true } }
+					sort: "publishedAt:desc"
+				) {
+					data {
+						id
+						attributes {
+							title
+							publishedAt
+							slug
+							cover {
+								data {
+									id
+									attributes {
+										url
+									}
+								}
+							}
+							category {
+								data {
+									id
+									attributes {
+										name
+										slug
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	content_list {
+		data {
+			id
+			attributes {
+				contents(pagination: { limit: 9 }, sort: "publishedAt:desc") {
+					data {
+						id
+						attributes {
+							title
+							slug
+							category {
+								data {
+									id
+									attributes {
+										slug
+										name
+									}
+								}
+							}
+							cover {
+								data {
+									id
+									attributes {
+										url
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

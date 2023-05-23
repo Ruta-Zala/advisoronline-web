@@ -1,0 +1,79 @@
+#import "../../graphql/fragments/most-read-articles.fragment.graphql"
+
+query SpecificPartner($partnerSlug: String) {
+	siteManagerPartners(
+		filters: { slug: { eq: $partnerSlug } }
+		pagination: { limit: 1 }
+	) {
+		data {
+			id
+			attributes {
+				title
+				publishedAt
+				description
+				esgEnabled
+				esgTags {
+					data {
+						id
+						attributes {
+							name
+						}
+					}
+				}
+				logo {
+					data {
+						id
+						attributes {
+							url
+						}
+					}
+				}
+			}
+		}
+	}
+
+	siteManagerEsgs {
+		data {
+			id
+			attributes {
+				partnersInFocus {
+					...SharedPartnersInFocus
+				}
+
+				magazine {
+					id
+					active
+					title
+					subtitle
+					cta_detail
+					cta_demo
+					image {
+						data {
+							id
+							attributes {
+								url
+							}
+						}
+					}
+				}
+
+				categoryBox {
+					id
+					active
+					title
+					categories(pagination: { limit: 8 }) {
+						data {
+							id
+							attributes {
+								name
+								slug
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	...MostReadArticles
+}

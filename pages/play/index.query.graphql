@@ -1,0 +1,20 @@
+query PartnerCollections {
+	playCollections(sort: "publishedAt:desc") {
+		data {
+			id
+			attributes {
+				name
+				slug
+				description
+				header {
+					data {
+						id
+						attributes {
+							url
+						}
+					}
+				}
+			}
+		}
+	}
+}

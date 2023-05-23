@@ -1,0 +1,73 @@
+#import "../../graphql/fragments/most-read-articles.fragment.graphql"
+
+query EsgPartners($page: Int, $tags: [String!]!) {
+	siteManagerPartners {
+		data {
+			id
+			attributes {
+				title
+				slug
+
+				logo {
+					data {
+						id
+						attributes {
+							url
+						}
+					}
+				}
+			}
+		}
+	}
+
+	contents(
+		# Page depends on this fixed 12 pageSize
+		pagination: { pageSize: 12, page: $page }
+		filters: { tags: { name: { in: $tags } } }
+		sort: "publishedAt:desc"
+	) {
+		meta {
+			pagination {
+				pageCount
+			}
+		}
+		data {
+			id
+			attributes {
+				title
+				slug
+				publishedAt
+				short_description
+				category {
+					data {
+						id
+						attributes {
+							name
+							slug
+						}
+					}
+				}
+				cover {
+					data {
+						id
+						attributes {
+							url
+						}
+					}
+				}
+			}
+		}
+	}
+
+	categories(pagination: { pageSize: 8 }) {
+		data {
+			id
+			attributes {
+				name
+				slug
+			}
+		}
+	}
+
+	...MostReadArticles
+}

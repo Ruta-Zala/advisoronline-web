@@ -1,0 +1,38 @@
+fragment SharedHeroHomePage on ComponentSharedHeroHomePage {
+	id
+	tag {
+		data {
+			id
+			attributes {
+				contents(pagination: { limit: 3 }, sort: "publishedAt:desc") {
+					data {
+						id
+						attributes {
+							title
+							slug
+							publishedAt
+							short_description
+							category {
+								data {
+									id
+									attributes {
+										name
+										slug
+									}
+								}
+							}
+							cover {
+								data {
+									id
+									attributes {
+										url
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

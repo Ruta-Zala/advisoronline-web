@@ -1,0 +1,15 @@
+query SearchModal($search: String) {
+	contents(
+		filters: { or: [{ title: { containsi: $search } }] }
+		pagination: { pageSize: 6 }
+		sort: ["publishedAt:desc"]
+	) {
+		data {
+			id
+			attributes {
+				title
+				slug
+			}
+		}
+	}
+}
